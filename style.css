@@ -1,44 +1,64 @@
-body {
+body, html {
+    height: 100%;
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color:grey;
     color: #333;
     text-align: center;
     padding: 20px;
 }
 
-.weather-container {
+.background-blur {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images.pexels.com/photos/2642612/pexels-photo-2642612.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(5px);
+    z-index: -1; /* Pastikan background berada di belakang konten */
+}
+
+.weather-app {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    position: relative; /* Tetapkan posisi relatif untuk memastikan berada di atas background */
+    /* background-image: url("https://img.freepik.com/free-vector/storm-concept-illustration_114360-6915.jpg?t=st=1724813237~exp=1724816837~hmac=c872eadc02e3bcefec00fb7e528eb482f1c620b342d9ee57fff2b767e52947cd&w=740"); */
 }
 
-h1 {
+
+.input-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 20px;
-    font-size: 2em;
-    color: #333;
 }
 
 input[type="text"] {
     padding: 10px;
     font-size: 1em;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    width: calc(100% - 22px);
-    margin-bottom: 10px;
+    border-radius: 4px 0 0 4px;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 button {
     padding: 10px 20px;
     font-size: 1em;
     border: none;
-    border-radius: 4px;
+    border-radius: 0 4px 4px 0;
     background-color: #007BFF;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-sizing: border-box;
 }
 
 button:hover {
@@ -49,16 +69,117 @@ button:hover {
     margin-top: 20px;
 }
 
-#weatherResult h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+
+/* Switch Toggle Style */
+.switch {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 34px;
 }
 
-#weatherResult p {
-    font-size: 1.2em;
-    margin: 5px 0;
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-#weatherResult img {
-    margin-top: 10px;
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
 }
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #000; /* Warna hitam untuk lingkaran */
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Theme Styles */
+.weather-app {
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.weather-app.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.weather-app.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+@media (max-width: 600px){
+    .weather-app{
+        padding: 15px;
+    }
+
+    input[type="text"], button {
+        width: 100%;
+        margin-bottom: 10px;
+        border-radius: 4px;
+    }
+
+    .switch {
+        top: 18px;
+        right: 15px;
+        width: 40px;  /* Sesuaikan ukuran switch */
+        height: 22px; /* Sesuaikan tinggi switch */
+    }
+
+    .switch .slider:before {
+        width: 18px;  /* Sesuaikan ukuran bola */
+        height: 18px; /* Sesuaikan ukuran bola */
+        top: 2px;     /* Posisikan bola di tengah */
+        left: 2px;    /* Sesuaikan posisi kiri */
+        transform: translateX(0); /* Reset transformasi */
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(18px); /* Sesuaikan dengan lebar switch */
+    }
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light grey background */
+    border-top: 8px solid #3498db; /* Blue border on top */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 2s linear infinite;
+    margin: 20px auto; /* Center horizontally */
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+
+
+
+
