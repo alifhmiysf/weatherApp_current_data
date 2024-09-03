@@ -3,23 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css"> <!-- Menghubungkan ke CSS yang sudah ada -->
 </head>
 <body>
-    <div class="background-blur"></div>
+    <div class="background-blur"></div> <!-- Background blur -->
+    <!-- Toggle switch di dalam div.weather-app -->
+    <label class="switch">
+        <input type="checkbox" id="themeToggle">
+        <span class="slider"></span>
+    </label>
     <div class="weather-app">
-        <label class="switch">
-            <input type="checkbox" id="themeToggle">
-            <span class="slider"></span>
-        </label>
-        <h1>Weather App</h1>
-        <input type="text" id="cityInput" placeholder="Enter city name">
-        <button id="getWeatherBtn">Get Weather</button>
-        <div id="weatherResult">
-            <div id="loadingSpinner" class="spinner" style="display:none;"></div>
-        </div> 
-    </div> 
+        <!-- Div untuk hasil cuaca berdasarkan geolocation dan ramalan cuaca geolocation -->
+        <div id="geoWeather">
+            <h2>Weather Based on Your Location</h2>
+            <div id="geoWeatherResult"></div>
+            <div id="geoForecastResult" class="forecast-container">
+                <!-- Kartu ramalan cuaca berdasarkan geolocation -->
+                <div class="forecast-item">
+                    <img src="weather-icon.png" alt="Weather Icon">
+                    <h3>Sunny</h3>
+                    <p>25°C</p>
+                </div>
+                <!-- Tambahkan lebih banyak kartu ramalan cuaca jika diperlukan -->
+            </div>
+        </div>
+        <!-- Div untuk hasil cuaca berdasarkan kota dan ramalan cuaca kota -->
+        <div class="input-group">
+            <input type="text" id="cityInput" placeholder="Enter city">
+            <button id="getWeatherBtn">Get Weather</button>
+        </div>
+        <div id="cityWeather">
+            <h2>Weather Based on City</h2>
+            <div id="weatherResult"></div>
+            <div id="forecastResult" class="forecast-container">
+                
+                <!-- Tambahkan lebih banyak kartu ramalan cuaca jika diperlukan -->
+            </div>
+        </div>
+    </div>
+    <div id="loadingSpinner" class="spinner" style="display: none;"></div> <!-- Spinner -->
     <script src="script.js"></script>
 </body>
 </html>
